@@ -5,6 +5,7 @@ ADD . /home/livehwinfo
 WORKDIR /home/livehwinfo
 RUN npm install
 ENTRYPOINT ['node']
+CMD ['app.js']
 VOLUME /home/livehwinfo
 USER 1000
 EXPOSE 4200
