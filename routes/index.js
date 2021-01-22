@@ -20,7 +20,6 @@ router.route('/')
 
 router.route('/settings')
     .post(function(req, res){
-        console.log("TEST:" + JSON.stringify(req.body))
         Settings.setAll(req.body)
         res.status(204).send()
     })
