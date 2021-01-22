@@ -1,0 +1,10 @@
+{
+  "hostname": "Node1",
+  "db": "systeminfo",
+  "db_host": "localhost",
+  "db_port": 8086,
+  "db_username": "livehwinfo",
+  "db_password": "livehwinfo",
+  "enabled": true,
+  "interval": 5
+}
