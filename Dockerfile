@@ -4,7 +4,7 @@ RUN apt-get -y update && apt-get -y upgrade
 ADD . /home/livehwinfo
 WORKDIR /home/livehwinfo
 RUN npm install
-ENTRYPOINT['node']
+ENTRYPOINT ['node']
 VOLUME /home/livehwinfo
 USER 1000
 EXPOSE 4200
