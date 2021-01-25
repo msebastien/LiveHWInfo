@@ -47,9 +47,9 @@ let DataUtil = {
     cpuLoadCores: function(data) {
         si.currentLoad().then((d) => {
             let cores = {}
-            for(let i = 0; i < d.cores.length; i++) {
+            for(let i = 0; i < d.cpus.length; i++) {
                 Object.defineProperty(cores, `core_${i}`, 
-                { enumerable: true, value: d.cpus[i].load * 100})
+                { enumerable: true, value: d.cpus[i].load})
             }
             data.cpu_load_cores = cores // Percent
         })
