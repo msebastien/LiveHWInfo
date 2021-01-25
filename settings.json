@@ -1,6 +1,6 @@
 {
   "hostname": "",
-  "networkInterface": "wlp0s20f3",
+  "networkInterface": "eth0",
   "db": "systeminfo",
   "db_host": "localhost",
   "db_port": 8086,
