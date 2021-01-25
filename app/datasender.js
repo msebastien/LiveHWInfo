@@ -47,6 +47,7 @@ function routine() {
         DataUtil.cpuSpeed(hwdata)
         DataUtil.cpuSpeedCores(hwdata)
         DataUtil.cpuLoad(hwdata)
+        DataUtil.cpuLoadCores(hwdata)
         DataUtil.cpuTemperature(hwdata)
         DataUtil.cpuTemperatureCores(hwdata)
         DataUtil.memoryStats(hwdata)

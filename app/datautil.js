@@ -44,6 +44,18 @@ let DataUtil = {
         .catch((error) => console.error(error))
     },
 
+    cpuLoadCores: function(data) {
+        si.currentLoad().then((d) => {
+            let cores = {}
+            for(let i = 0; i < d.cores.length; i++) {
+                Object.defineProperty(cores, `core_${i}`, 
+                { enumerable: true, value: d.cpus[i].load * 100})
+            }
+            data.cpu_load_cores = cores // Percent
+        })
+        .catch((error) => console.error(error))
+    },
+
     cpuTemperature: function(data) {
         si.cpuTemperature().then((d) => {
             data.cpu_temp = d.main // °C
