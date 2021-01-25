@@ -27,6 +27,7 @@ $(document).ready(function () {
         $('#checkboxEnable').prop("checked", response.enabled)
         $('#textInterval').val(response.interval)
         $('#textHostname').val(response.hostname)
+        $('#textNetworkInterface').val(response.networkInterface)
         $('#textDatabase').val(response.db)
         $('#textDbHost').val(response.db_host)
         $('#textDbPort').val(response.db_port)
@@ -52,6 +53,7 @@ $(document).ready(function () {
                 enabled: $('#checkboxEnable').prop('checked'),
                 interval: parseInt($('#textInterval').val()),
                 hostname: $('#textHostname').val(),
+                networkInterface: $('#textNetworkInterface').val(),
                 db: $('#textDatabase').val(),
                 db_host: $('#textDbHost').val(),
                 db_port: parseInt($('#textDbPort').val()),

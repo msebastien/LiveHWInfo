@@ -46,26 +46,49 @@ let Util = {
      */
     sendDataToInfluxDB: function(influxDB, data) {
         key = Object.keys(data)
-        //console.log(key)
         let date = new Date()
         console.log(date.toISOString())
     
         for(var i=0; i<key.length; i++){
             if(key[i] !== "hostname"){
-                console.log("Key : " + key[i] + "; Value : " + data[key[i]]);
-                influxDB.writePoints([
-                    {
-                        measurement : key[i],
-                        tags : { host : data.hostname },
-                        fields : { value : data[key[i]]},
-                        timestamp: date // in milliseconds
-                    }
-                ]).catch(function(e) {
-                    console.log("ERROR");
-                    console.log(e);
-                })
+                        
+                // If the value is not an object
+                if(!Util.isObject(data[key[i]])) {
+                    console.log("Key : " + key[i] + "; Value : " + data[key[i]])
+                    influxDB.writePoints([
+                        {
+                            measurement : key[i],
+                            tags : { host : data.hostname },
+                            fields : { value : data[key[i]]},
+                            timestamp: date // in milliseconds
+                        }
+                    ]).catch(function(e) {
+                        console.log("ERROR");
+                        console.log(e);
+                    })
+                } 
+                else { // Load an object as multiple fields for the same measurement
+                    console.log("Key : " + key[i] + "; Value : " + JSON.stringify(data[key[i]], null, 2))
+                    influxDB.writePoints([
+                        {
+                            measurement : key[i],
+                            tags : { host : data.hostname },
+                            fields : data[key[i]],
+                            timestamp: date // in milliseconds
+                        }
+                    ]).catch(function(e) {
+                        console.log("ERROR");
+                        console.log(e);
+                    })
+                }
+                
             }
         }
+    },
+
+    isObject: function(val) {
+        if (val === null) { return false;}
+        return ( (typeof val === 'function') || (typeof val === 'object') );
     }
 }
 module.exports = Util

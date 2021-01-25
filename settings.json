@@ -1,5 +1,6 @@
 {
-  "hostname": "Node1",
+  "hostname": "",
+  "networkInterface": "wlp0s20f3",
   "db": "systeminfo",
   "db_host": "localhost",
   "db_port": 8086,

@@ -4,7 +4,6 @@ const DataUtil = require('./datautil')
 const Settings = require('./settings')
 
 let enabled = Settings.get('enabled')
-let start = true
 let timeInterval = Settings.get('interval') * 1000 // milliseconds
 
 //-------------------------------------------------------------
@@ -39,17 +38,20 @@ function routine() {
     let db = Settings.get('db')
 
     if(enabled) {
-        if(start) {
-            influxDB = Util.connectToInfluxDB(db)
-            start = false
-        }
+        // Make sure the connection is always valid
+        // Else, try again to connect
+        influxDB = Util.connectToInfluxDB(db)
 
         // Retrieve system data
         DataUtil.hostname(hwdata)
         DataUtil.cpuSpeed(hwdata)
+        DataUtil.cpuSpeedCores(hwdata)
         DataUtil.cpuLoad(hwdata)
         DataUtil.cpuTemperature(hwdata)
+        DataUtil.cpuTemperatureCores(hwdata)
         DataUtil.memoryStats(hwdata)
+        DataUtil.ioStats(hwdata)
+        DataUtil.networkStats(hwdata)
 
         console.log("Hostname: " + hwdata.hostname)
             
