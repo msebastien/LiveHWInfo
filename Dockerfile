@@ -4,8 +4,7 @@ RUN apt-get -y update && apt-get -y upgrade
 ADD . /home/livehwinfo
 WORKDIR /home/livehwinfo
 RUN npm install
-ENTRYPOINT ['node']
-CMD ['app.js']
+ENTRYPOINT ["node", "app.js"]
 VOLUME /home/livehwinfo
 USER 1000
 EXPOSE 4200
